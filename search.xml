@@ -19,15 +19,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>发帖测试</title>
-    <url>/2025/07/18/post/</url>
-    <content><![CDATA[<h1 id="h1-标题-1"><a href="#h1-标题-1" class="headerlink" title="h1 标题 1"></a>h1 标题 1</h1><h3 id="h3"><a href="#h3" class="headerlink" title="h3"></a>h3</h3><blockquote>
-<p>引用部分</p>
-</blockquote>
-<p>主题段落测试</p>
-]]></content>
-  </entry>
-  <entry>
     <title>&#39;老王你好帅啊啊啊啊啊啊啊&#39;</title>
     <url>/2025/08/01/my-first-blog/</url>
     <content><![CDATA[<p>使用github pages服务搭建博客的好处有：</p>
@@ -52,6 +43,15 @@
 <p><img src="/my-first-blog.assets/857070_28_painter_8k(1).jpg"></p>
 <p>小猫图片</p>
 <p><img src="https://raw.githubusercontent.com/KipWen/blog-img/main/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202023-04-12%20215619.jpg" alt="小猫图片"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>发帖测试</title>
+    <url>/2025/07/18/post/</url>
+    <content><![CDATA[<h1 id="h1-标题-1"><a href="#h1-标题-1" class="headerlink" title="h1 标题 1"></a>h1 标题 1</h1><h3 id="h3"><a href="#h3" class="headerlink" title="h3"></a>h3</h3><blockquote>
+<p>引用部分</p>
+</blockquote>
+<p>主题段落测试</p>
 ]]></content>
   </entry>
 </search>
