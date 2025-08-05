@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8">
 
 
 
@@ -131,13 +131,9 @@ Short, intimate, and creates a nice dialogue with the future self.
 
 
 
-<meta name="generator" content="Hexo 7.3.0"></head>
-<body 
-  class="
-    bg-[var(--c-0)]
-    text-[var(--c-80)]
-  ">
-  <!-- The navigation bar -->
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="bg-[var(--c-0)] text-[var(--c-80)]">
+    <!-- The navigation bar -->
 <header
   class="flex flex-row items-center w-full pr-4 z-10 border-b-[1px] border-b-[var(--c-border)] dark:bg-[var(--c-0)] dark:border-b-[var(--c-0)] gap-2 h-[var(--h-header)] text-[var(--c-80)]"
 >
@@ -195,15 +191,6 @@ Short, intimate, and creates a nice dialogue with the future self.
       </a>
            
       <a
-        href="/./search/"
-        class="flex flex-row items-center gap-1 hover:underline hover:bg-[var(--c-20)] hover:text-[var(--c-theme)] transition-all px-2 py-1 my-1 rounded-lg group whitespace-nowrap"
-      >
-         
-        <p>search</p>
-        
-      </a>
-           
-      <a
         href="/./about"
         class="flex flex-row items-center gap-1 hover:underline hover:bg-[var(--c-20)] hover:text-[var(--c-theme)] transition-all px-2 py-1 my-1 rounded-lg group whitespace-nowrap"
       >
@@ -216,6 +203,26 @@ Short, intimate, and creates a nice dialogue with the future self.
     <!-- Icons on the right -->
     <div class="flex flex-row items-center justify-center">
       <!-- TODO: Add search icon here -->
+      <div class="search-header">
+  <div class="search-icon tools-bar-item w-8 flex flex-row items-center" id="search-icon">
+    <a class="w-full flex flex-row items-center">
+      <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
+    </a>
+  </div>
+  <div class="search-input-container hidden">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="{{ __('search.placeholder') }}" spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
 
       <!-- Dark/light toggle icon -->
       <a class="flex group p-1" title="toggle theme" id="toggle-dark">
@@ -289,14 +296,6 @@ Short, intimate, and creates a nice dialogue with the future self.
     </a>
        
     <a
-      href="/./search/"
-      class="flex flex-row items-center gap-2 h-12 hover:underline hover:bg-[var(--c-20)] px-3 py-1 rounded-lg"
-    >
-      <iconify-icon icon="" width="22"> </iconify-icon>
-      <p>search</p>
-    </a>
-       
-    <a
       href="/./about"
       class="flex flex-row items-center gap-2 h-12 hover:underline hover:bg-[var(--c-20)] px-3 py-1 rounded-lg"
     >
@@ -307,8 +306,7 @@ Short, intimate, and creates a nice dialogue with the future self.
   </div>
 </div>
 
-  <main>
-    
+    <main>
 
 
   <!-- 显示所有存在的 category -->
@@ -323,9 +321,8 @@ Short, intimate, and creates a nice dialogue with the future self.
     </div>
   </div>
 
-
-  </main>
-  <footer class="flex flex-col mt-18 mb-12 items-center
+</main>
+    <footer class="flex flex-col mt-18 mb-12 items-center
   text-[var(--c-50)] text-sm">
   <div class="flex flex-row items-center my-12">
     
@@ -342,7 +339,7 @@ Short, intimate, and creates a nice dialogue with the future self.
             p-2
             my-1
             flex flex-row items-center
-            group" title="Github" target="_blank" rel="noopener" href="https://github.com/KipWen">
+            group" title="Github" target="_blank" rel="noopener" href="https://www.github.com/chen-yingfa">
             <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
         </a>
     
@@ -400,30 +397,25 @@ Short, intimate, and creates a nice dialogue with the future self.
 
 </footer>
 
-  <div class="
-    back-to-top
-    fixed right-6
-    z-1024
-    -bottom-20
-    rounded-lg
-    font-bold
-    py-1 px-2
-    text-[var(--c-80)]
-    bg-[var(--c-20)]
-    cursor-pointer
-    text-center
-    drop-shadow-md
-  ">
-    <span class="flex justify-center items-center text-sm">
-      <span id="scrollpercent"><span>0</span> %</span>
-      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
-    </span>
-  </div>
-  
+    <div
+      class="back-to-top fixed right-6 z-1024 -bottom-20 rounded-lg font-bold py-1 px-2 text-[var(--c-80)] bg-[var(--c-20)] cursor-pointer text-center drop-shadow-md"
+    >
+      <span class="flex justify-center items-center text-sm">
+        <span id="scrollpercent"><span>0</span> %</span>
+        <iconify-icon
+          width="18"
+          icon="mingcute:arrow-to-up-fill"
+          id="go-top"
+        ></iconify-icon>
+      </span>
+    </div>
+    
 <script src="/js/main.js"></script>
 
 
-  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
-</body>
-
+    <div
+      class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden"
+      id="maple"
+    ></div>
+  </body>
 </html>
