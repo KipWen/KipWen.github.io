@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/07/18/hello-world/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>发帖测试</title>
+    <url>/2025/07/18/post/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>test</tag>
+        <tag>paper</tag>
+        <tag>python</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图片，精华帖，评论测试</title>
+    <url>/2025/08/01/my-first-blog/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>test</tag>
+        <tag>paper</tag>
+        <tag>python</tag>
+        <tag>java</tag>
+        <tag>每个标签要独占一行才不合并，严格遵守yaml语法。</tag>
+      </tags>
+  </entry>
+</search>

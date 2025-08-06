@@ -1,287 +1,95 @@
-/* global CONFIG */
+document.addEventListener("DOMContentLoaded", function () {
+  const searchPageInput = document.getElementById("search-page-input");
 
-
-
-$(document).ready(() => {
-  $("#search-icon").onclick = function(event) {
-    console.log('onClickSearchIcon', event)
-    // Show search input container
-    var searchInputContainer = $('.search-input-container').classList.toggle('hidden');
-    // Hide search icon
-    var searchIcon = $('.search-icon').classList.toggle('hidden');
+  // 只在搜索页面 (即找到了 #search-page-input 的页面) 才执行所有逻辑
+  if (!searchPageInput) {
+    return;
   }
-  // Popup Window
+
+  // --- 从这里开始是搜索页面的专属逻辑 ---
+
   let isfetched = false;
   let datas;
-  let isXml = true;
-  // Search DB path
-  let searchPath = CONFIG.path;
-  if (searchPath.length === 0) {
-    searchPath = 'search.xml';
-  } else if (searchPath.endsWith('json')) {
-    isXml = false;
-  }
-  const input = document.querySelector('.search-input');
-  const resultContent = document.getElementById('search-result');
+  const resultContent = document.getElementById(
+    "search-page-results-container"
+  );
+  const searchPath = CONFIG.path || "search.xml";
 
-  const getIndexByWord = (word, text, caseSensitive) => {
-    if (CONFIG.localsearch.unescape) {
-      let div = document.createElement('div');
-      div.innerText = word;
-      word = div.innerHTML;
-    }
-    let wordLen = word.length;
-    if (wordLen === 0) return [];
-    let startPosition = 0;
-    let position = [];
-    let index = [];
-    if (!caseSensitive) {
-      text = text.toLowerCase();
-      word = word.toLowerCase();
-    }
-    while ((position = text.indexOf(word, startPosition)) > -1) {
-      index.push({ position, word });
-      startPosition = position + wordLen;
-    }
-    return index;
-  };
-
-  // Merge hits into slices
-  const mergeIntoSlice = (start, end, index, searchText) => {
-    let item = index[index.length - 1];
-    let { position, word } = item;
-    let hits = [];
-    let searchTextCountInSlice = 0;
-    while (position + word.length <= end && index.length !== 0) {
-      if (word === searchText) {
-        searchTextCountInSlice++;
-      }
-      hits.push({
-        position,
-        length: word.length
-      });
-      let wordEnd = position + word.length;
-
-      // Move to next position of hit
-      index.pop();
-      while (index.length !== 0) {
-        item = index[index.length - 1];
-        position = item.position;
-        word = item.word;
-        if (wordEnd > position) {
-          index.pop();
-        } else {
-          break;
-        }
-      }
-    }
-    return {
-      hits,
-      start,
-      end,
-      searchTextCount: searchTextCountInSlice
-    };
-  };
-
-  // Highlight title and content
-  const highlightKeyword = (text, slice) => {
-    let result = '';
-    let prevEnd = slice.start;
-    slice.hits.forEach(hit => {
-      result += text.substring(prevEnd, hit.position);
-      let end = hit.position + hit.length;
-      result += `<b class="search-keyword">${text.substring(hit.position, end)}</b>`;
-      prevEnd = end;
-    });
-    result += text.substring(prevEnd, slice.end);
-    return result;
-  };
-
-  const inputEventFunction = () => {
-    if (!isfetched) return;
-    let searchText = input.value.trim().toLowerCase();
-    let keywords = searchText.split(/[-\s]+/);
-    if (keywords.length > 1) {
-      keywords.push(searchText);
-    }
-    let resultItems = [];
-    if (searchText.length > 0) {
-      // Perform local searching
-      datas.forEach(({ title, content, url }) => {
-        let titleInLowerCase = title.toLowerCase();
-        let contentInLowerCase = content.toLowerCase();
-        let indexOfTitle = [];
-        let indexOfContent = [];
-        let searchTextCount = 0;
-        keywords.forEach(keyword => {
-          indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-          indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-        });
-
-        // Show search results
-        if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-          let hitCount = indexOfTitle.length + indexOfContent.length;
-          // Sort index by position of keyword
-          [indexOfTitle, indexOfContent].forEach(index => {
-            index.sort((itemLeft, itemRight) => {
-              if (itemRight.position !== itemLeft.position) {
-                return itemRight.position - itemLeft.position;
-              }
-              return itemLeft.word.length - itemRight.word.length;
-            });
-          });
-
-          let slicesOfTitle = [];
-          if (indexOfTitle.length !== 0) {
-            let tmp = mergeIntoSlice(0, title.length, indexOfTitle, searchText);
-            searchTextCount += tmp.searchTextCountInSlice;
-            slicesOfTitle.push(tmp);
-          }
-
-          let slicesOfContent = [];
-          while (indexOfContent.length !== 0) {
-            let item = indexOfContent[indexOfContent.length - 1];
-            let { position, word } = item;
-            // Cut out 100 characters
-            let start = position - 20;
-            let end = position + 80;
-            if (start < 0) {
-              start = 0;
-            }
-            if (end < position + word.length) {
-              end = position + word.length;
-            }
-            if (end > content.length) {
-              end = content.length;
-            }
-            let tmp = mergeIntoSlice(start, end, indexOfContent, searchText);
-            searchTextCount += tmp.searchTextCountInSlice;
-            slicesOfContent.push(tmp);
-          }
-
-          // Sort slices in content by search text's count and hits' count
-          slicesOfContent.sort((sliceLeft, sliceRight) => {
-            if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-              return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-            } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-              return sliceRight.hits.length - sliceLeft.hits.length;
-            }
-            return sliceLeft.start - sliceRight.start;
-          });
-
-          // Select top N slices in content
-          let upperBound = parseInt(CONFIG.localsearch.top_n_per_article, 10);
-          if (upperBound >= 0) {
-            slicesOfContent = slicesOfContent.slice(0, upperBound);
-          }
-
-          let resultItem = '';
-
-          if (slicesOfTitle.length !== 0) {
-            resultItem += `<li><a href="${url}" class="search-result-title">${highlightKeyword(title, slicesOfTitle[0])}</a>`;
-          } else {
-            resultItem += `<li><a href="${url}" class="search-result-title">${title}</a>`;
-          }
-
-          slicesOfContent.forEach(slice => {
-            resultItem += `<a href="${url}"><p class="search-result">${highlightKeyword(content, slice)}...</p></a>`;
-          });
-
-          resultItem += '</li>';
-          resultItems.push({
-            item: resultItem,
-            id  : resultItems.length,
-            hitCount,
-            searchTextCount
-          });
-        }
-      });
-    }
-    if (keywords.length === 1 && keywords[0] === '') {
-      resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>';
-    } else if (resultItems.length === 0) {
-      resultContent.innerHTML = '<div id="no-result"><i class="far fa-frown fa-5x"></i></div>';
-    } else {
-      resultItems.sort((resultLeft, resultRight) => {
-        if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-          return resultRight.searchTextCount - resultLeft.searchTextCount;
-        } else if (resultLeft.hitCount !== resultRight.hitCount) {
-          return resultRight.hitCount - resultLeft.hitCount;
-        }
-        return resultRight.id - resultLeft.id;
-      });
-      resultContent.innerHTML = `<ul class="search-result-list">${resultItems.map(result => result.item).join('')}</ul>`;
-      window.pjax && window.pjax.refresh(resultContent);
-    }
-  };
-
+  // 获取数据
   const fetchData = () => {
     fetch(CONFIG.root + searchPath)
-      .then(response => response.text())
-      .then(res => {
-        // Get the contents from search data
+      .then((response) => response.text())
+      .then((res) => {
         isfetched = true;
-        datas = isXml ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(res, "text/xml");
+        datas = [...xmlDoc.querySelectorAll("entry")].map((element) => {
           return {
-            title  : element.querySelector('title').textContent,
-            content: element.querySelector('content').textContent,
-            url    : element.querySelector('url').textContent
+            title: element.querySelector("title").textContent,
+            content: element.querySelector("content").textContent,
+            url: element.querySelector("url").textContent,
           };
-        }) : JSON.parse(res);
-        // Only match articles with not empty titles
-        datas = datas.filter(data => data.title).map(data => {
-          data.title = data.title.trim();
-          data.content = data.content ? data.content.trim().replace(/<[^>]+>/g, '') : '';
-          data.url = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-          return data;
         });
-        // Remove loading animation
-        document.getElementById('no-result').innerHTML = '<i class="fa fa-search fa-5x"></i>';
-        inputEventFunction();
       });
   };
 
-  if (CONFIG.localsearch.preload) {
-    fetchData();
-  }
+  // 高亮关键词
+  const highlightKeyword = (text, keyword) => {
+    const lowerText = text.toLowerCase();
+    const lowerKeyword = keyword.toLowerCase();
+    let highlightedText = "";
+    let lastIndex = 0;
+    let index = lowerText.indexOf(lowerKeyword, lastIndex);
 
-  if (CONFIG.localsearch.trigger === 'auto') {
-    input.addEventListener('input', inputEventFunction);
-  } else {
-    document.querySelector('.search-icon').addEventListener('click', inputEventFunction);
-    input.addEventListener('keypress', event => {
-      if (event.key === 'Enter') {
-        inputEventFunction();
-      }
-    });
-  }
-
-  // Handle and trigger popup window
-  document.querySelectorAll('.popup-trigger').forEach(element => {
-    element.addEventListener('click', () => {
-      document.body.style.overflow = 'hidden';
-      document.querySelector('.search-pop-overlay').classList.add('search-active');
-      input.focus();
-      if (!isfetched) fetchData();
-    });
-  });
-
-  // Monitor main search box
-  const onPopupClose = () => {
-    document.body.style.overflow = '';
-    document.querySelector('.search-pop-overlay').classList.remove('search-active');
+    while (index !== -1) {
+      highlightedText += text.substring(lastIndex, index);
+      highlightedText += `<b class="search-keyword">${text.substring(
+        index,
+        index + keyword.length
+      )}</b>`;
+      lastIndex = index + keyword.length;
+      index = lowerText.indexOf(lowerKeyword, lastIndex);
+    }
+    highlightedText += text.substring(lastIndex);
+    return highlightedText;
   };
 
-  document.querySelector('.search-pop-overlay').addEventListener('click', event => {
-    if (event.target === document.querySelector('.search-pop-overlay')) {
-      onPopupClose();
+  // 输入事件处理
+  const inputEventFunction = () => {
+    if (!isfetched) return;
+
+    let searchText = searchPageInput.value.trim();
+    if (searchText === "") {
+      resultContent.innerHTML =
+        '<div class="search-init-tip">请在上方搜索框输入内容</div>';
+      return;
     }
-  });
-  document.querySelector('.popup-btn-close').addEventListener('click', onPopupClose);
-  window.addEventListener('pjax:success', onPopupClose);
-  window.addEventListener('keyup', event => {
-    if (event.key === 'Escape') {
-      onPopupClose();
+
+    let resultItems = [];
+    datas.forEach(({ title, url }) => {
+      // 只在标题中搜索
+      if (title.toLowerCase().includes(searchText.toLowerCase())) {
+        resultItems.push(
+          `<a href="${url}" class="search-result-item">
+            <div class="search-result-title">${highlightKeyword(
+              title,
+              searchText
+            )}</div>
+          </a>`
+        );
+      }
+    });
+
+    if (resultItems.length > 0) {
+      resultContent.innerHTML = resultItems.join("");
+    } else {
+      resultContent.innerHTML =
+        '<div class="search-no-result">未找到相关结果</div>';
     }
-  });
+  };
+
+  // 页面加载后就去获取数据
+  fetchData();
+  // 监听输入框的输入事件
+  searchPageInput.addEventListener("input", inputEventFunction);
 });
