@@ -2,12 +2,12 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/project/2025/07/18/hello-world/</url>
+    <url>/2025/07/18/hello-world/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>发帖测试</title>
-    <url>/project/2025/07/18/post/</url>
+    <url>/2025/07/18/post/</url>
     <content><![CDATA[]]></content>
       <tags>
         <tag>test</tag>
@@ -18,7 +18,7 @@
   </entry>
   <entry>
     <title>图片，精华帖，评论测试</title>
-    <url>/project/2025/08/01/my-first-blog/</url>
+    <url>/2025/08/01/my-first-blog/</url>
     <content><![CDATA[]]></content>
       <tags>
         <tag>test</tag>
