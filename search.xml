@@ -6,6 +6,17 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
+    <title>发帖测试</title>
+    <url>/2025/07/18/post/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>test</tag>
+        <tag>paper</tag>
+        <tag>python</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>图片，精华帖，评论测试</title>
     <url>/2025/08/01/my-first-blog/</url>
     <content><![CDATA[]]></content>
@@ -18,14 +29,13 @@
       </tags>
   </entry>
   <entry>
-    <title>发帖测试</title>
-    <url>/2025/07/18/post/</url>
+    <title>笔记本电脑清灰教程（含图文）</title>
+    <url>/2025/09/10/%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91%E6%B8%85%E7%81%B0%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[]]></content>
       <tags>
-        <tag>test</tag>
-        <tag>paper</tag>
-        <tag>python</tag>
-        <tag>java</tag>
+        <tag>笔记本</tag>
+        <tag>清灰</tag>
+        <tag>相变片</tag>
       </tags>
   </entry>
 </search>
