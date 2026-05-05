@@ -1,0 +1,78 @@
+<%#
+this page has two versions, which is shown is based on whether current
+page is 'category'.
+
+- url:'http://localhost:4000/category/' return false.
+- url:'http://localhost:4000/categories/*/' return true.
+
+The `/category/` page will shown all categories, and is the page you
+land on when you click on the "Categories" in the navigdation bar.
+
+The '/categories/*/' shows all posts with that category and is where you land
+when you click a category link on a post.
+
+How to add a category page.
+
+1. hexo new page "category"
+2. cd source/category/index.md
+3. Add the following front matter.
+
+---
+title: '''category'''
+date: 2019-06-09 09:56:49
+layout: category
+---
+ %>
+
+<% if (is_category()) { %>
+  <!-- Single category: show all posts in this category -->
+  <div class="px-6 max-w-2xl mx-auto md:px-0 my-8">
+    <div class="flex flex-row items-center gap-2 mb-8">
+      <iconify-icon width="28" icon="mingcute:classify-2-fill" class="text-[var(--c-theme)]"></iconify-icon>
+      <span class="font-bold text-2xl text-[var(--c-100)]"><%- page.category %></span>
+      <span class="inline-flex items-center justify-center min-w-[28px] h-7 px-2 text-xs font-medium rounded-full bg-[var(--c-theme)] text-white">
+        <%- page.posts.length %>
+      </span>
+    </div>
+    <%- partial('archive', {pagination: config.category, index: true}) %>
+  </div>
+<% } else { %>
+  <!-- Show all categories -->
+  <div class="px-6 max-w-2xl mx-auto md:px-0 my-8">
+    <div class="flex flex-row items-center gap-2 mb-8">
+      <iconify-icon width="28" icon="mingcute:classify-2-fill" class="text-[var(--c-theme)]"></iconify-icon>
+      <h2 class="font-bold text-2xl text-[var(--c-100)]">Categories</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <% site.categories.forEach(category =>{ %>
+        <a href="<%- url_for(category.path.toLowerCase()) %>" class="group block">
+          <div class="
+            p-5 rounded-xl
+            border border-[var(--c-sep)]
+            bg-[var(--c-10)]
+            hover:bg-[var(--c-20)]
+            hover:border-[var(--c-theme)]
+            hover:shadow-md
+            transition-all duration-200
+            group-hover:-translate-y-1
+          ">
+            <div class="flex items-center justify-between">
+              <span class="text-lg font-semibold text-[var(--c-90)] group-hover:text-[var(--c-theme)] transition-colors">
+                <%- category.name %>
+              </span>
+              <span class="
+                inline-flex items-center justify-center
+                min-w-[28px] h-7 px-2
+                text-xs font-medium
+                rounded-full
+                bg-[var(--c-theme)] text-white
+              ">
+                <%- category.posts.length %>
+              </span>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+<% } %>

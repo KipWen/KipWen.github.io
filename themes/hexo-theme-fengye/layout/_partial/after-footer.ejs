@@ -1,0 +1,13 @@
+<script>
+  var CONFIG = {
+    root: '<%- config.root %>',
+    // 从站点 _config.yml 的 search 插件配置中获取 path
+    path: '<%- config.search ? config.search.path : "search.xml" %>',
+    // 从主题 _config.yml 中获取 localsearch 的所有配置
+    localsearch: <%- JSON.stringify(theme.local_search || {}) %>
+  };
+</script>
+
+<%# 加载主要的 JS 文件 %> <%- js('js/main.js') %> <%#
+如果在主题配置中启用了本地搜索，则加载 search.js %> <% if (theme.local_search &&
+theme.local_search.enable) { %> <%- js('js/search.js') %> <% } %>

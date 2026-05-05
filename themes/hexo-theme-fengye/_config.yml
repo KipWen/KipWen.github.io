@@ -1,0 +1,105 @@
+# Header
+# 注意：这里所有的 text 都被改成了 name
+nav:
+  home:
+    path: ./
+    text: Home
+  categories:
+    path: ./categories
+    text: Categories
+  tags:
+    path: ./tags
+    text: Tags
+  search:
+    path: ./search/
+    text: Search
+  about:
+    path: ./about
+    text: About
+
+  # To add a new page, use hexo new page, then add another entry below.
+  # Each entry MUST have a path. In addition, it will render icon and/or text
+  # if they are provided. It will be an empty button if none of these are
+  # provided.
+
+email: 2856788686@qq.com
+my_location: Hubei, China
+cv_path: /pdf/cv.pdf
+cv_last_update_date: Aug, 2025
+show_featured_posts: true
+year_align_center: false
+
+# favicon
+favicon: /favicon.ico
+
+# logo
+portrait: /images/logo.jpg # Your profile image here
+show_profile_image: true
+
+# links
+links:
+  Github:
+    link: https://github.com/KipWen
+    icon: mingcute:github-fill
+  # ZhiHu:
+  #   link: https://www.zhihu.com/people/chen-ying-fa-34
+  #   icon: ri:zhihu-line
+  # Twitter:
+  #   link: https://www.twitter.com/DonnyChan123
+  #   icon: mingcute:social-x-fill
+  Steam:
+    link: https://steamcommunity.com/profiles/76561199368310509/
+    icon: ri:steam-fill
+  # You can add more links below using the format above.
+
+# analytics
+google_analytics:
+baidu_analytics:
+
+# mathjax
+fancybox: true
+
+# mathjax
+mathjax: true
+
+# echarts
+echarts: true
+
+# busuanzi
+busuanzi: true
+
+# mermaid
+mermaid:
+  enable: true
+  # Available themes: default | dark | forest | neutral
+  theme: default
+
+# giscus
+giscus:
+  enable: true
+  repo: "KipWen/blog-comments"
+  repo_id: "R_kgDOPYda5A"
+  category: "Announcements"
+  category_id: "DIC_kwDOPYda5M4Ctynf"
+  mapping: "pathname"
+
+# Local Search / 本地搜索
+# Docs: https://(这里通常是主题的文档链接，可以留空)
+local_search:
+  enable: true # 关键！设置为 true 来启用该功能
+
+  # 触发搜索的时机: auto | manual
+  # auto: 在输入框中输入内容时自动搜索
+  # manual: 按下回车键或点击搜索按钮时才搜索
+  trigger: auto
+
+  # 每篇文章显示匹配结果的最大数量
+  # 设置为 -1 可显示全部匹配结果
+  top_n_per_article: 1
+
+  # 是否对搜索索引文件中的 HTML 字符进行反转义
+  unescape: false
+
+  # 是否在页面加载时就预加载搜索数据文件。
+  # 如果您的搜索文件很大，建议设置为 false，在打开搜索框时再加载。
+  preload: false
