@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="KipWen">
+
+
+  <meta name="subtitle" content="副标题测试">
+
+
+  <meta name="description" content="“一个私人角落，存放着现在的我，写给未来的你。”
+Short, intimate, and creates a nice dialogue with the future self.
+">
+
+
+
+<title>为什么2026年黄金暴跌时，COT几乎没有报警？ | Salty_fish</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body class="bg-[var(--c-0)] text-[var(--c-80)]">
+    <!-- The navigation bar -->
+<header
+  class="flex flex-row items-center w-full pr-4 z-10 border-b-[1px] border-b-[var(--c-border)] dark:bg-[var(--c-0)] dark:border-b-[var(--c-0)] gap-2 h-[var(--h-header)] text-[var(--c-80)]"
+>
+  <!-- Left part -->
+  <div class="overflow-hidden h-full flex flex-row items-center">
+    <!-- Site Title on the top left -->
+    <a
+      href="/"
+      class="whitespace-nowrap text-2xl text-[var(--c-theme)] hover:text-[var(--c-theme)] pl-4 font-black bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent"
+    >
+      Salty_fish
+    </a>
+  </div>
+  <!-- Div for pushing items to both sides -->
+  <div class="flex-1"></div>
+  <!-- Right part -->
+  <div class="flex flex-row items-center z-20 h-full">
+    <!-- Page links -->
+    <div class="hidden sm:flex flex-row h-full">
+           
+      <a
+        href="/./"
+        class="flex flex-row items-center gap-1 hover:underline hover:bg-[var(--c-20)] hover:text-[var(--c-theme)] transition-all px-2 py-1 my-1 rounded-lg group whitespace-nowrap"
+      >
+         
+        <p>Home</p>
+        
+      </a>
+           
+      <a
+        href="/./categories"
+        class="flex flex-row items-center gap-1 hover:underline hover:bg-[var(--c-20)] hover:text-[var(--c-theme)] transition-all px-2 py-1 my-1 rounded-lg group whitespace-nowrap"
+      >
+         
+        <p>Categories</p>
+        
+      </a>
+           
+      <a
+        href="/./tags"
+        class="flex flex-row items-center gap-1 hover:underline hover:bg-[var(--c-20)] hover:text-[var(--c-theme)] transition-all px-2 py-1 my-1 rounded-lg group whitespace-nowrap"
+      >
+         
+        <p>Tags</p>
+        
+      </a>
+           
+      <a
+        href="/./search/"
+        class="flex flex-row items-center gap-1 hover:underline hover:bg-[var(--c-20)] hover:text-[var(--c-theme)] transition-all px-2 py-1 my-1 rounded-lg group whitespace-nowrap"
+      >
+         
+        <p>Search</p>
+        
+      </a>
+           
+      <a
+        href="/./about"
+        class="flex flex-row items-center gap-1 hover:underline hover:bg-[var(--c-20)] hover:text-[var(--c-theme)] transition-all px-2 py-1 my-1 rounded-lg group whitespace-nowrap"
+      >
+         
+        <p>About</p>
+        
+      </a>
+      
+    </div>
+    <!-- Icons on the right -->
+    <div class="flex flex-row items-center justify-center">
+      <!-- TODO: Add search icon here -->
+      <!-- Dark/light toggle icon -->
+      <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+        <iconify-icon
+          class="transition-transform group-hover:rotate-[45deg] group-hover:scale-125 group-hover:text-[var(--c-theme)]"
+          width="24"
+          id="theme-icon"
+        >
+        </iconify-icon>
+      </a>
+      <!-- Icon for dropout menu on small screens -->
+      <div class="flex flex-row items-center justify-center p-1 sm:hidden">
+        <a class="w-6 h-6" aria-hidden="true" id="open-menu">
+          <iconify-icon
+            width="24"
+            icon="mingcute:menu-fill"
+            class="transition-transform hover:scale-125 hover:rotate-[5deg]"
+          >
+          </iconify-icon>
+        </a>
+        <a class="w-6 h-6 hidden" aria-hidden="true" id="close-menu">
+          <iconify-icon
+            width="24"
+            icon="mingcute:close-circle-fill"
+            class="transition-transform hover:scale-125 hover:rotate-[80deg]"
+          >
+          </iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden w-full z-10 rounded">
+  <div
+    id="menu-content"
+    class="flex flex-col font-bold text-xl border-b-[1px] relative z-20 border-[var(--c-sep)] px-2 py-2 -translate-y-full transition-transform duration-200"
+  >
+      
+    <a
+      href="/./"
+      class="flex flex-row items-center gap-2 h-12 hover:underline hover:bg-[var(--c-20)] px-3 py-1 rounded-lg"
+    >
+      <iconify-icon icon="" width="22"> </iconify-icon>
+      <p>Home</p>
+    </a>
+       
+    <a
+      href="/./categories"
+      class="flex flex-row items-center gap-2 h-12 hover:underline hover:bg-[var(--c-20)] px-3 py-1 rounded-lg"
+    >
+      <iconify-icon icon="" width="22"> </iconify-icon>
+      <p>Categories</p>
+    </a>
+       
+    <a
+      href="/./tags"
+      class="flex flex-row items-center gap-2 h-12 hover:underline hover:bg-[var(--c-20)] px-3 py-1 rounded-lg"
+    >
+      <iconify-icon icon="" width="22"> </iconify-icon>
+      <p>Tags</p>
+    </a>
+       
+    <a
+      href="/./search/"
+      class="flex flex-row items-center gap-2 h-12 hover:underline hover:bg-[var(--c-20)] px-3 py-1 rounded-lg"
+    >
+      <iconify-icon icon="" width="22"> </iconify-icon>
+      <p>Search</p>
+    </a>
+       
+    <a
+      href="/./about"
+      class="flex flex-row items-center gap-2 h-12 hover:underline hover:bg-[var(--c-20)] px-3 py-1 rounded-lg"
+    >
+      <iconify-icon icon="" width="22"> </iconify-icon>
+      <p>About</p>
+    </a>
+     
+  </div>
+</div>
+
+    <main><!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">为什么2026年黄金暴跌时，COT几乎没有报警？</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2026-05-28</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2026-06-02</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>6.6k words, 23 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/finance/">finance</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/COT%E6%8A%A5%E5%91%8A/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-10)]
+          dark:hover:bg-[var(--c-theme)]
+        ">
+        COT报告
+      </a>
+    
+      <a href="/tags/%E9%BB%84%E9%87%91/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-10)]
+          dark:hover:bg-[var(--c-theme)]
+        ">
+        黄金
+      </a>
+    
+      <a href="/tags/%E4%BA%A4%E6%98%93%E6%A1%86%E6%9E%B6/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+          dark:hover:text-[var(--c-10)]
+          dark:hover:bg-[var(--c-theme)]
+        ">
+        交易框架
+      </a>
+    
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <h1 id="为什么2026年黄金暴跌时，COT几乎没有报警？"><a href="#为什么2026年黄金暴跌时，COT几乎没有报警？" class="headerlink" title="为什么2026年黄金暴跌时，COT几乎没有报警？"></a>为什么2026年黄金暴跌时，COT几乎没有报警？</h1><h2 id="一个关于”资金结构”的分析框架"><a href="#一个关于”资金结构”的分析框架" class="headerlink" title="一个关于”资金结构”的分析框架"></a>一个关于”资金结构”的分析框架</h2><p>2026年1月30日，黄金暴跌12%。</p>
+<p>这是过去40年来最剧烈的单日跌幅之一。</p>
+<p>但让我意外的，并不是暴跌本身。</p>
+<p>而是：</p>
+<blockquote>
+<p>在暴跌前的整个上涨阶段，COT数据几乎没有出现任何典型的”顶部拥挤”信号。</p>
+</blockquote>
+<p>没有极端多头。<br>没有历史级拥挤。<br>没有疯狂加杠杆。</p>
+<p>甚至很多时候，COMEX期货里的投机多头仓位还低于历史均值。</p>
+<p>这和很多人印象中的”泡沫顶部”完全不一样。</p>
+<p>因为按照传统理解：</p>
+<ul>
+<li>市场见顶前，通常应该先出现极端拥挤</li>
+<li>投机资金应该疯狂追涨</li>
+<li>杠杆仓位应该显著偏离历史均值</li>
+</ul>
+<p>但这一次没有。</p>
+<p>于是问题来了：</p>
+<blockquote>
+<p>如果COT没报警，黄金为什么还是崩了？</p>
+</blockquote>
+<p>这个问题后来让我重新思考：</p>
+<blockquote>
+<p>COT到底能告诉我们什么？<br>又有哪些东西，是它永远看不到的？</p>
+</blockquote>
+<p>这篇文章，就是我过去几个月重新整理后的一个分析框架。</p>
+<p>它不是预测模型。</p>
+<p>它更像一张地图。</p>
+<p>帮助你理解：</p>
+<ul>
+<li>谁在买</li>
+<li>谁在卖</li>
+<li>哪些资金正在推动趋势</li>
+<li>哪些风险正在累积</li>
+<li>以及最重要的：</li>
+</ul>
+<blockquote>
+<p>当前真正掌握定价权的人，到底是谁。</p>
+</blockquote>
+<hr>
+<h1 id="COT到底是什么？"><a href="#COT到底是什么？" class="headerlink" title="COT到底是什么？"></a>COT到底是什么？</h1><p>COT（Commitments of Traders）是美国商品期货交易委员会（CFTC）每周公布的持仓报告。</p>
+<p>它记录了COMEX期货市场里：</p>
+<ul>
+<li>谁在做多</li>
+<li>谁在做空</li>
+<li>仓位变化有多大</li>
+</ul>
+<p>这是少数公开、标准化、长期可追踪的资金数据之一。</p>
+<p>很多人会直接看：</p>
+<ul>
+<li>净多头</li>
+<li>多空比例</li>
+<li>历史分位</li>
+</ul>
+<p>但我后来发现：</p>
+<blockquote>
+<p>单纯看”仓位有多少”，远远不够。</p>
+</blockquote>
+<p>真正有价值的，其实是：</p>
+<ul>
+<li>仓位变化的速度</li>
+<li>资金行为的持续性</li>
+<li>不同资产之间是否同步</li>
+<li>以及：</li>
+</ul>
+<blockquote>
+<p>“价格上涨时，专业资金到底有没有参与。”</p>
+</blockquote>
+<p>所以后来，我把整个分析框架重新拆成了四个部分。</p>
+<p>但在进入具体指标之前，需要先澄清一个最容易混淆的概念。</p>
+<hr>
+<h1 id="两种Z-score：这篇文章最重要的前提"><a href="#两种Z-score：这篇文章最重要的前提" class="headerlink" title="两种Z-score：这篇文章最重要的前提"></a>两种Z-score：这篇文章最重要的前提</h1><p>本文所有分析都围绕Z-score展开，但Z-score实际上衡量的是<strong>两个完全不同的东西</strong>。不区分清楚，后面的所有信号都会读错。</p>
+<p><strong>持仓Z-score（Position Z-score）</strong></p>
+<p>衡量的是：<strong>当前仓位在历史上处于什么位置。</strong></p>
+<ul>
+<li>计算对象：多头持仓量、空头持仓量、净持仓量</li>
+<li>对标基准：过去3年的滚动持仓数据</li>
+<li>含义：Z值越高，当前仓位越偏离历史均值</li>
+<li>用途：判断拥挤度</li>
+</ul>
+<p>例如多头持仓Z-score &#x3D; -0.4，意思是当前COMEX投机多头仓位<strong>比历史均值还低</strong>。根本不拥挤。</p>
+<p><strong>变化Z-score（Flow Z-score）</strong></p>
+<p>衡量的是：<strong>本周资金进出的速度有多剧烈。</strong></p>
+<ul>
+<li>计算对象：多头持仓的周环比变化量、空头持仓的周环比变化量</li>
+<li>对标基准：过去3年的周度变动幅度</li>
+<li>含义：Z值越极端（正向或负向），本周的资金动作越显著</li>
+<li>用途：判断资金动向和加速度</li>
+</ul>
+<p>例如多头变化Z-score &#x3D; -1.0z，意思是本周多头减仓的幅度达到了<strong>1个标准差</strong>，属于统计上显著的异常流出。</p>
+<p><strong>一句话区分：</strong></p>
+<blockquote>
+<p>持仓Z-score 回答”水位有多高”。<br>变化Z-score 回答”水流有多急”。</p>
+</blockquote>
+<p>两个指标可以组合出完全不同的市场状态。比如2026年1月6日：</p>
+<ul>
+<li>多头持仓Z-score &#x3D; <strong>-0.4</strong>（水位不高，仓位正常）</li>
+<li>多头变化Z-score &#x3D; <strong>-1.0z</strong>（水流很急，大幅流出）</li>
+</ul>
+<p>仓位并不拥挤，但聪明钱正在加速离场。这是最容易被忽视的危险组合。</p>
+<hr>
+<h1 id="一、资金动向（Flow）"><a href="#一、资金动向（Flow）" class="headerlink" title="一、资金动向（Flow）"></a>一、资金动向（Flow）</h1><h2 id="市场最重要的，从来不是”仓位”，而是”变化”"><a href="#市场最重要的，从来不是”仓位”，而是”变化”" class="headerlink" title="市场最重要的，从来不是”仓位”，而是”变化”"></a>市场最重要的，从来不是”仓位”，而是”变化”</h2><p>很多人会盯着净多头。</p>
+<p>但净多头本质上只是一个静态结果。</p>
+<p>真正重要的是：</p>
+<blockquote>
+<p>本周有没有新的资金进场？</p>
+</blockquote>
+<p>系统会把每周管理基金（Managed Money）的仓位变化，与过去3年的历史波动进行比较。</p>
+<p>这里用到的是<strong>变化Z-score（Flow Z-score）</strong>。只有变化幅度显著偏离历史均值（Flow Z-score超过±0.8）时，才会触发信号。</p>
+<p>常见的动作标签：</p>
+<ul>
+<li><strong>多头建仓 &#x2F; 空头建仓</strong>：机构正在投入真金白银，明确押注单边方向。</li>
+<li><strong>多头平仓 &#x2F; 空头回补</strong>：前期获利资金正在撤退，趋势可能面临降温。</li>
+<li><strong>多空双增 &#x2F; 多空双减</strong>：市场分歧加大，多空双方同时加码或同时撤退，往往预示大波动临近。</li>
+<li><strong>空头挤压 Short Squeeze（逼空）</strong>：多头资金涌入的同时，大量空头被迫止损平仓，往往伴随价格暴力拉升。</li>
+<li><strong>多头挤压 Long Squeeze（逼多）</strong>：空头资金涌入的同时，大量多头被迫止损平仓，往往伴随价格踩踏暴跌。</li>
+</ul>
+<hr>
+<h2 id="为什么”变化”比”仓位”更重要？"><a href="#为什么”变化”比”仓位”更重要？" class="headerlink" title="为什么”变化”比”仓位”更重要？"></a>为什么”变化”比”仓位”更重要？</h2><p>因为很多顶部，并不是在”仓位最高”时形成的。</p>
+<p>而是在：</p>
+<blockquote>
+<p>新资金开始停止流入的时候。</p>
+</blockquote>
+<p>市场最危险的阶段，往往不是没人看多。</p>
+<p>而是：</p>
+<ul>
+<li>所有人都已经看多</li>
+<li>但已经没有新的买家了</li>
+</ul>
+<p>价格还在涨。<br>但推动价格上涨的燃料，正在耗尽。就像大霄老师说过，四千点进场，以后要卖给谁？</p>
+<p>这也是为什么：</p>
+<blockquote>
+<p>比起”绝对仓位”，我更关注”边际变化”。</p>
+</blockquote>
+<hr>
+<h1 id="二、拥挤度（Crowding）"><a href="#二、拥挤度（Crowding）" class="headerlink" title="二、拥挤度（Crowding）"></a>二、拥挤度（Crowding）</h1><h2 id="拥挤不代表马上反转，但它决定了市场有多脆弱"><a href="#拥挤不代表马上反转，但它决定了市场有多脆弱" class="headerlink" title="拥挤不代表马上反转，但它决定了市场有多脆弱"></a>拥挤不代表马上反转，但它决定了市场有多脆弱</h2><p>这里用到的是<strong>持仓Z-score（Position Z-score）</strong>。</p>
+<p>我们把净持仓占比与过去3年历史进行Z-score标准化，判断当前仓位在历史上的水位：</p>
+<table>
+<thead>
+<tr>
+<th>持仓Z-score</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-2 ~ +2</td>
+<td>正常区间，期货仓位处于历史正常水平</td>
+</tr>
+<tr>
+<td>&gt; +2.0</td>
+<td>拥挤预警，多头&#x2F;空头持仓过度集中，趋势脆弱</td>
+</tr>
+<tr>
+<td>&gt; +2.75</td>
+<td>极端拥挤，踩踏风险极高</td>
+</tr>
+</tbody></table>
+<p>很多经典行情，本质上都不是”基本面突然变化”。</p>
+<p>而是：</p>
+<blockquote>
+<p>拥挤仓位被迫平仓。</p>
+</blockquote>
+<hr>
+<h2 id="经典案例：2023年秋季黄金空头踩踏"><a href="#经典案例：2023年秋季黄金空头踩踏" class="headerlink" title="经典案例：2023年秋季黄金空头踩踏"></a>经典案例：2023年秋季黄金空头踩踏</h2><p>当时黄金空头<strong>持仓Z-score</strong>触及极端区域（&lt; -2）。</p>
+<p>随后地缘冲突爆发。</p>
+<p>结果是：</p>
+<p>大量空头被迫止损。</p>
+<p>空头回补形成新的买盘。<br>买盘继续推高价格。<br>更高价格又继续逼空。</p>
+<p>最后形成了典型的Short Squeeze（空头挤压）。</p>
+<p>两周时间，金价上涨接近11%。</p>
+<p>这个案例是拥挤度指标最理想的应用场景——当期货市场是定价主场时，极端拥挤是一个可靠的预警信号。</p>
+<hr>
+<h2 id="但真正让我重新思考的，是2026年1月"><a href="#但真正让我重新思考的，是2026年1月" class="headerlink" title="但真正让我重新思考的，是2026年1月"></a>但真正让我重新思考的，是2026年1月</h2><p>因为这一次：</p>
+<blockquote>
+<p>拥挤度几乎完全静默。</p>
+</blockquote>
+<p>金价一路从$4,700上涨到$5,595的历史峰值。</p>
+<p>但COMEX投机多头的<strong>持仓Z-score</strong>，整个上涨过程中<strong>从未超过-0.4</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1月6日：  多头持仓Z-score  -0.4  ← 低于历史均值，不拥挤</span><br><span class="line">1月13日： 多头持仓Z-score  -0.6  ← 继续走低，仓位在萎缩</span><br><span class="line">1月20日： 多头持仓Z-score  -0.6  ← 仍然低于均值</span><br><span class="line">1月27日： 多头持仓Z-score  -0.4  ← 全程未突破-0.4</span><br></pre></td></tr></table></figure>
+
+<p>换句话说：</p>
+<blockquote>
+<p>期货市场里的投机资金，其实并没有疯狂追涨。</p>
+</blockquote>
+<p>但价格却在疯狂上涨。</p>
+<p>这意味着什么？</p>
+<p>意味着：</p>
+<blockquote>
+<p>这一轮行情的边际定价者，可能根本不在COMEX里。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/KipWen/blog-img/main/blog/202605290927098.png" alt="XAUUSD 金价走势图"></p>
+<p>数据来源：<a target="_blank" rel="noopener" href="https://www.tradingview.com/symbols/XAUUSD/">TradingView</a>（代码 XAUUSD）</p>
+<hr>
+<h2 id="为什么这件事很重要？"><a href="#为什么这件事很重要？" class="headerlink" title="为什么这件事很重要？"></a>为什么这件事很重要？</h2><p>因为它揭示了一个量化模型都会忽略的问题：</p>
+<blockquote>
+<p>“你看到的数据，不一定等于真正推动价格的数据。”</p>
+</blockquote>
+<p>2023-2026年的黄金牛市里。</p>
+<p>真正的边际买家包括：</p>
+<ul>
+<li>全球央行（年均净购800吨以上，四年累计增储1,400吨）</li>
+<li>黄金ETF机构投资者（2026年1月单月流入创纪录的190亿美元）</li>
+<li>场外实物需求（中国、印度零售金条金币）</li>
+<li>去美元化结构性配置资金（波兰央行2025年单年增持102吨）</li>
+</ul>
+<p>而这些力量：</p>
+<p>大部分并不在COT统计范围内。</p>
+<p>所以：</p>
+<blockquote>
+<p>COT看到的是”交易员”。<br>但它看不到”整个市场”。</p>
+</blockquote>
+<p>这也是为什么：</p>
+<p>2026年1月的黄金暴跌，并不是典型的”期货市场踩踏”。</p>
+<p>真正的问题出在：</p>
+<ul>
+<li>ETF巨额赎回</li>
+<li>实际利率飙升至2.4%（1998年以来最高）</li>
+<li>宏观流动性收紧</li>
+<li>CTA趋势跟踪算法在关键支撑位破位后触发程序化卖出</li>
+</ul>
+<p>而不是COMEX投机资金本身的拥挤出清。</p>
+<hr>
+<h1 id="三、量价背离（Divergence）"><a href="#三、量价背离（Divergence）" class="headerlink" title="三、量价背离（Divergence）"></a>三、量价背离（Divergence）</h1><h2 id="我最重视的信号"><a href="#我最重视的信号" class="headerlink" title="我最重视的信号"></a>我最重视的信号</h2><p>很多时候：</p>
+<p>价格和资金，并不会同步。</p>
+<p>例如：</p>
+<ul>
+<li>价格上涨，但专业资金开始减仓</li>
+<li>价格下跌，但专业资金反而在买入</li>
+</ul>
+<p>这种背离，本质上意味着：</p>
+<blockquote>
+<p>“聪明钱”和市场情绪，开始出现分歧。</p>
+</blockquote>
+<hr>
+<h2 id="2026年1月6日：第一次危险信号"><a href="#2026年1月6日：第一次危险信号" class="headerlink" title="2026年1月6日：第一次危险信号"></a>2026年1月6日：第一次危险信号</h2><p>当周数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">金价周涨跌幅：    +2.6%        ← 价格继续创出新高</span><br><span class="line">多头周变化量：    -11,939手     ← 多头大举减仓</span><br><span class="line">多头变化Z-score： -1.0z        ← 边际动能显著衰减 (Flow)</span><br><span class="line">多头持仓Z-score： -0.4         ← 整体仓位并未拥挤 (Position)</span><br><span class="line">系统标签：        多头平仓       ← 触发背离信号</span><br></pre></td></tr></table></figure>
+
+<p>这里的关键在于两种Z-score的组合：</p>
+<ul>
+<li><strong>持仓Z-score &#x3D; -0.4</strong>：仓位不拥挤，如果你只看拥挤度，一切正常。</li>
+<li><strong>变化Z-score &#x3D; -1.0z</strong>：但边际上，专业资金正在以1个标准差的力度加速离场。</li>
+</ul>
+<p>价格还在涨。市场情绪仍然极度乐观。</p>
+<p>但COMEX上最专业的投机资金，已经在价格创新高的过程中，悄悄减仓了近12,000手。</p>
+<p>这不是空头加仓砸盘——当时空头变化Z-score仅为-0.2z，空头根本没动。</p>
+<p>是多头自己主动在卖。</p>
+<blockquote>
+<p>他们不是在逃命。他们是在把筹码倒给追涨的人。</p>
+</blockquote>
+<hr>
+<h2 id="最重要的不是”预测顶部”"><a href="#最重要的不是”预测顶部”" class="headerlink" title="最重要的不是”预测顶部”"></a>最重要的不是”预测顶部”</h2><p>而是：</p>
+<blockquote>
+<p>你开始意识到，市场结构正在恶化。</p>
+</blockquote>
+<p>这是很多人容易误解的地方。</p>
+<p>背离信号并不意味着：</p>
+<ul>
+<li>明天立刻暴跌</li>
+<li>或者马上反转</li>
+</ul>
+<p>很多行情，背离之后还能继续涨很久。</p>
+<p>真正重要的是：</p>
+<blockquote>
+<p>当最敏感的资金开始逆势减仓时，你应该重新审视自己的风险收益比。</p>
+</blockquote>
+<p>这个信号领先价格拐点约三周——1月6日触发背离，1月30日暴跌。</p>
+<p>不是每次背离都有这个精度。但这一次，它确实亮了。</p>
+<hr>
+<h1 id="四、资金加速度（Flow-Momentum）"><a href="#四、资金加速度（Flow-Momentum）" class="headerlink" title="四、资金加速度（Flow Momentum）"></a>四、资金加速度（Flow Momentum）</h1><h2 id="单周数据是截图，多周数据才是电影"><a href="#单周数据是截图，多周数据才是电影" class="headerlink" title="单周数据是截图，多周数据才是电影"></a>单周数据是截图，多周数据才是电影</h2><p>这是后来我越来越重视的东西。</p>
+<p>因为：</p>
+<p>同样一个”多头建仓”。</p>
+<p>可能意味着趋势启动。<br>也可能意味着最后一批追涨资金进场。</p>
+<p>但如果你只看单周的<strong>变化Z-score</strong>，两者长得很像——都是一根正向的大柱子。</p>
+<p>区别在于：</p>
+<blockquote>
+<p>这笔资金，到底是”第一棒”，还是”最后一棒”。</p>
+</blockquote>
+<p>系统跟踪的是连续4-8周的<strong>变化Z-score加速度</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>信号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>变化Z-score持续为正，且加速度上升</td>
+<td>🟢</td>
+<td>趋势健康，资金持续流入</td>
+</tr>
+<tr>
+<td>变化Z-score由负转正，且大幅流入（&gt; +0.8z）</td>
+<td>🟡</td>
+<td>CTA&#x2F;趋势资金追涨，需关注是否为最后一棒</td>
+</tr>
+<tr>
+<td>变化Z-score加速度衰减</td>
+<td>🔴</td>
+<td>追涨动能衰竭——即使绝对值还在流入</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="把2026年1月的四周拼起来"><a href="#把2026年1月的四周拼起来" class="headerlink" title="把2026年1月的四周拼起来"></a>把2026年1月的四周拼起来</h3><p>单独看每一周，你可能会得出完全相反的结论。</p>
+<p>但连起来看，故事就清楚了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1月6日：  变化Z-score -1.0z   持仓Z-score -0.4   第一批资金获利了结，触发背离</span><br><span class="line">1月13日： 变化Z-score -0.2z   持仓Z-score -0.6   市场犹豫，买盘暂时停滞</span><br><span class="line">1月20日： 变化Z-score +1.0z   持仓Z-score -0.6   CTA趋势基金大规模追涨接盘</span><br><span class="line">1月27日： 变化Z-score +0.4z   持仓Z-score -0.4   追涨加速度衰竭 (+1.0z→+0.4z)</span><br><span class="line">1月30日： 暴跌12%</span><br></pre></td></tr></table></figure>
+
+<p>1月6日：金价已连续上涨，早期低位建仓的资金开始减仓。变化Z-score -1.0z，不是恐慌，是有序派发。</p>
+<p>1月13日：减仓减速。变化Z-score仅-0.2z，没有人再大量卖出，但也没有人急着买入。市场在观望。</p>
+<p>1月20日：变化Z-score +1.0z——这是四周里最大的一笔流入，多头周环比增加了12,380手。但此时金价已经累计涨了约8.7%。如果你只看这一周，你会以为”资金重新看多了”。<strong>但这批冲进来的资金，更像是被上涨逼着追高的CTA趋势跟踪基金，而不是主动择时的价值发现者。</strong> 证据是：持仓Z-score始终在-0.6，说明即使加了12,380手，整体仓位仍然低于历史均值——这批资金是在追涨，不是在布局。</p>
+<p>1月27日：变化Z-score +0.4z。还在买，多头又加了4,843手。但加速度从+1.0z掉到了+0.4z。新买家还在进场，但进场速度在大幅放缓。</p>
+<blockquote>
+<p>不是没人买了。<br>而是最后一个愿意追高的人，可能也已经进场了。</p>
+</blockquote>
+<p>三天后，金价单日暴跌12%。</p>
+<p><img src="https://raw.githubusercontent.com/KipWen/blog-img/main/blog/202605290944166.png" alt="多头变化Z-score折现图"></p>
+<p>数据来源：CFTC Disaggregated COT报告（<a target="_blank" rel="noopener" href="https://www.cftc.gov/dea/futures/deacmxsf.htm%EF%BC%89%EF%BC%8C%E9%80%89%E6%8B%A9%22Gold">https://www.cftc.gov/dea/futures/deacmxsf.htm），选择&quot;Gold</a> - COMEX”，提取”Managed Money”分类下的多头持仓数据，自行计算周变化和Z-score。价格数据来自 Yahoo Finance（GC&#x3D;F）。</p>
+<hr>
+<h2 id="阶段性总结：2026年1月为什么危险？"><a href="#阶段性总结：2026年1月为什么危险？" class="headerlink" title="阶段性总结：2026年1月为什么危险？"></a>阶段性总结：2026年1月为什么危险？</h2><p>到这里，回头看整个过程，五条线索已经全部对齐了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">持仓Z-score始终不高      →  市场并不拥挤</span><br><span class="line">变化Z-score提前转负      →  聪明钱开始撤退</span><br><span class="line">CTA在高位追涨            →  最后一批趋势资金接盘</span><br><span class="line">Flow Momentum开始衰减   →  新买家越来越少</span><br><span class="line">金银跨资产信号开始分裂    →  定价权已脱离COMEX</span><br></pre></td></tr></table></figure>
+
+<p><strong>换句话说，这不是一次典型的“期货踩踏”，而是一次“场外资金驱动行情”在流动性衰减后的彻底失速。</strong></p>
+<p>拥挤度之所以全程静默，是因为真正的买方（央行和ETF）根本不在COT的范围内，期货市场里从未出现过真正的极端拥挤。当场外买盘因ETF赎回和实际利率飙升而减速时，期货市场里并没有人“做多到需要止损”。这导致下跌时既没有空头回补的弹簧，也没有多头踩踏的连锁反应。它就只是单纯地失速了——随后CTA算法嗅到趋势反转，程序化的无情卖出瞬间加速，最终导致一天之内12%的跌幅。</p>
+<p>这是COT能讲出的最好的故事，也是它讲不出的那部分里最危险的东西。</p>
+<hr>
+<h1 id="五、跨资产验证：为什么我开始看整个板块"><a href="#五、跨资产验证：为什么我开始看整个板块" class="headerlink" title="五、跨资产验证：为什么我开始看整个板块"></a>五、跨资产验证：为什么我开始看整个板块</h1><p>单个资产偶尔会骗人。</p>
+<p>但整个板块很难一起骗人。</p>
+<p>因为真正的趋势行情，往往会在板块内部形成共振。</p>
+<p>资金会在不同资产之间扩散。<br>风险偏好会同步传导。<br>投机情绪也会一起升温。</p>
+<p>所以后来，我越来越不只看黄金本身。</p>
+<p>而是开始同时观察：</p>
+<ul>
+<li>黄金</li>
+<li>白银</li>
+<li>金银比（Gold&#x2F;Silver Ratio）</li>
+<li>以及整个贵金属板块的资金结构</li>
+</ul>
+<p>而2026年1月，我看到了一组非常奇怪的数据。</p>
+<hr>
+<h2 id="黄金和白银，开始出现“信号分裂”"><a href="#黄金和白银，开始出现“信号分裂”" class="headerlink" title="黄金和白银，开始出现“信号分裂”"></a>黄金和白银，开始出现“信号分裂”</h2><p>2026年1月20日当周：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">贵金属板块（1月20日当周）</span><br><span class="line">──────────────────────────────────────────────────────────</span><br><span class="line">           价格周涨幅    持仓Z-score    变化Z-score</span><br><span class="line">黄金         +3.7%        -0.6           +1.0z  (CTA追涨)</span><br><span class="line">白银         +9.7%        -2.9           -0.8z  (多头持续减仓)</span><br><span class="line">──────────────────────────────────────────────────────────</span><br></pre></td></tr></table></figure>
+
+<p>黄金继续上涨。</p>
+<p>白银涨得更猛。</p>
+<p>但问题在于：</p>
+<blockquote>
+<p>白银价格暴涨的同时，COMEX投机多头却在持续撤退。</p>
+</blockquote>
+<p>白银从$29上涨至$33附近，涨幅接近14%。</p>
+<p>但同期COMEX投机多头持仓，却从约29,100手下降至22,000手附近，减少接近25%。</p>
+<p>白银的持仓Z-score甚至跌至-2.9。</p>
+<p>这意味着：</p>
+<blockquote>
+<p>白银价格在创新高。<br>但期货投机盘却在大规模离场。</p>
+</blockquote>
+<p>这已经不是普通背离。</p>
+<p>而是整个板块内部开始出现结构性裂缝。</p>
+<p>这意味着什么？</p>
+<p>正常牛市里，板块内的资金通常会共振——黄金涨了，投机资金会涌入白银追弹性；白银涨了，也会带动黄金的投机情绪。但2026年1月，黄金的CTA在追涨，白银的投机盘却在持续撤退。</p>
+<p><strong>信号分裂。</strong></p>
+<p>推动整个贵金属板块上涨的力量，完全不在COMEX期货市场内。是央行、ETF、实物买家在买。期货投机盘从始至终没有深度参与这场最后的冲刺。</p>
+<p>这种结构有一个致命的脆弱性：</p>
+<blockquote>
+<p>如果场外买盘突然减速，期货市场里没有足够的多头持仓来承接下跌。</p>
+</blockquote>
+<p>因为没有人在期货市场里”做多”到需要止损的程度，所以也没有人会在下跌时被迫回补。换句话说——价格掉下来的时候，期货市场里没有弹簧。</p>
+<p>2026年1月黄金 vs 白银的持仓Z-score双线对比图。</p>
+<ul>
+<li>黄金持仓Z-score线（在-0.4到-0.6之间窄幅波动，始终在零轴下方）</li>
+<li>白银持仓Z-score线（从-2.3一路下跌到-3.1，加速恶化）</li>
+<li>两条线的走势方向完全相反，直观展示”信号分裂”</li>
+</ul>
+<p>注：Z-score 取值在不同时间拉取的数据之间可能存在 ±0.1 的浮动，来源于 CFTC 历史数据的例行修订以及舍入边界效应，不影响分析结论。</p>
+<p><img src="https://raw.githubusercontent.com/KipWen/blog-img/main/blog/202605290945409.png" alt="金银持仓Z-score对比图"></p>
+<p>数据来源：CFTC Disaggregated COT报告（<a target="_blank" rel="noopener" href="https://www.cftc.gov/dea/futures/deacmxsf.htm%EF%BC%89%EF%BC%8C%E5%88%86%E5%88%AB%E6%8F%90%E5%8F%96%22Gold">https://www.cftc.gov/dea/futures/deacmxsf.htm），分别提取&quot;Gold</a> - COMEX”和”Silver - COMEX”的Managed Money多头持仓数据，各自计算持仓Z-score。</p>
+<hr>
+<h2 id="更异常的是：同期金银比快速压缩"><a href="#更异常的是：同期金银比快速压缩" class="headerlink" title="更异常的是：同期金银比快速压缩"></a>更异常的是：同期金银比快速压缩</h2><p>与此同时。</p>
+<p>金银比（Gold&#x2F;Silver Ratio）也在快速下行。</p>
+<p>从过去几年高位区间快速压缩至1:50附近。</p>
+<p><img src="https://raw.githubusercontent.com/KipWen/blog-img/main/blog/202606021904338.png"></p>
+<p>数据来源：macromicro（<a target="_blank" rel="noopener" href="https://sc.macromicro.me/collections/3351/commodity-silver/26722/gold-silver-copper-ratio%EF%BC%89">https://sc.macromicro.me/collections/3351/commodity-silver/26722/gold-silver-copper-ratio）</a></p>
+<p>通常情况下：</p>
+<blockquote>
+<p>金银比快速下行，<br>往往意味着市场风险偏好正在扩散。</p>
+</blockquote>
+<p>因为白银相比黄金：</p>
+<ul>
+<li>波动更高</li>
+<li>杠杆属性更强</li>
+<li>更偏“风险资产”</li>
+</ul>
+<p>所以在正常牛市里：</p>
+<ul>
+<li>黄金上涨之后</li>
+<li>投机资金通常会进一步追逐白银弹性</li>
+<li>板块内部会出现明显的风险偏好扩散</li>
+</ul>
+<p>换句话说：</p>
+<blockquote>
+<p>白银强于黄金，<br>理论上应该对应“投机资金疯狂涌入白银”。</p>
+</blockquote>
+<p>但2026年1月并没有。</p>
+<p>实际发生的是：</p>
+<ul>
+<li>白银价格在暴涨</li>
+<li>金银比在快速压缩</li>
+<li>但COMEX白银投机盘却在持续减仓</li>
+</ul>
+<p>这是一个非常罕见的组合。</p>
+<blockquote>
+<p>价格在逼空。<br>但期货投机盘并不相信这轮上涨。</p>
+</blockquote>
+<hr>
+<h2 id="这意味着什么？"><a href="#这意味着什么？" class="headerlink" title="这意味着什么？"></a>这意味着什么？</h2><p><strong>这种金银信号的分裂意味着，推动整个贵金属板块上涨的边际买家，很可能根本不在COMEX期货市场内。</strong></p>
+<p>在正常的期货资金主导行情中，黄金的上涨通常会吸引资金追逐白银的弹性，白银投机多头理应同步扩张。但现实却截然相反：一边是黄金CTA资金在高位追涨，另一边则是白银投机盘在持续撤退，同时金银比还在快速下行。这种彼此矛盾的信号组合，将矛头直接指向了COMEX之外的市场力量（如全球央行购金、ETF配置资金或场外去美元化配置需求），而非传统意义上的期货投机资金。</p>
+<hr>
+<h2 id="为什么这种结构很危险？"><a href="#为什么这种结构很危险？" class="headerlink" title="为什么这种结构很危险？"></a>为什么这种结构很危险？</h2><p>因为它暴露了一个致命弱点：期货市场里没有足够“相信上涨”的深度多头。</p>
+<p>这意味着，一旦场外买盘开始减速，期货市场根本无法像典型牛市那样形成新的承接力量。既没有人深度加杠杆做多，也没有大量拥挤仓位需要在下跌中被动回补，更没有持续增仓的趋势资金来形成缓冲垫。换句话说，<strong>当价格开始下跌时，市场里没有任何“弹簧”</strong>。价格会直接进入无抵抗的失速状态，而这，恰恰是2026年1月底黄金暴跌前，整个贵金属板块最脆弱的地方。</p>
+<h1 id="六、这个框架最大的局限"><a href="#六、这个框架最大的局限" class="headerlink" title="六、这个框架最大的局限"></a>六、这个框架最大的局限</h1><p>任何模型都有盲区。</p>
+<p>COT也一样。</p>
+<p>它本质上只能回答一个问题：</p>
+<blockquote>
+<p>“COMEX里的专业资金在做什么？”</p>
+</blockquote>
+<p>但它回答不了：</p>
+<ul>
+<li>全球央行在做什么</li>
+<li>ETF资金在做什么</li>
+<li>实物黄金需求在做什么</li>
+<li>场外OTC市场在做什么</li>
+<li>上海黄金交易所（SGE）在做什么</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>COT覆盖的内容</th>
+<th>COT不覆盖的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>COMEX期货投机仓位（管理基金）</td>
+<td>各国央行购金&#x2F;售金</td>
+</tr>
+<tr>
+<td>COMEX商业套保仓位（矿商&#x2F;生产商）</td>
+<td>黄金ETF申购&#x2F;赎回</td>
+</tr>
+<tr>
+<td>CME集团清算的期货和期权</td>
+<td>场外大宗交易（OTC）</td>
+</tr>
+<tr>
+<td>仅限美国监管的交易所</td>
+<td>实物金条&#x2F;金币零售</td>
+</tr>
+<tr>
+<td></td>
+<td>上海黄金交易所（SGE）交易</td>
+</tr>
+<tr>
+<td></td>
+<td>伦敦场外黄金市场（LBMA）</td>
+</tr>
+</tbody></table>
+<p>所以：</p>
+<blockquote>
+<p>当真正的边际定价权不在COMEX时，<br>COT信号的有效性会系统性下降。</p>
+</blockquote>
+<p>2023-2026年的黄金行情，就是一个典型案例。</p>
+<hr>
+<h1 id="我后来的工作流"><a href="#我后来的工作流" class="headerlink" title="我后来的工作流"></a>我后来的工作流</h1><p>不再按顺序看面板，而是按问题看。</p>
+<p><strong>第一步：有没有资产触发量价背离？</strong></p>
+<p>有的话，同时检查<strong>持仓Z-score</strong>和<strong>变化Z-score</strong>。如果持仓Z-score不高但变化Z-score显著为负（如1月6日的-1.0z），说明聪明钱正在悄悄离场，而不是拥挤出逃。这两种情况的风险性质完全不同。</p>
+<p><strong>第二步：有没有资产持仓Z-score极端（&gt;±2）？</strong></p>
+<p>有的话，存在踩踏风险。拥挤度不一定告诉你什么时候反转，但能告诉你当前趋势有多脆弱。</p>
+<p><strong>第三步：如果以上都没有，但价格在剧烈波动？</strong></p>
+<p>检查跨资产信号是否一致。</p>
+<p>如果同板块资产信号方向一致（比如黄金和白银同时多头建仓）→ 趋势由期货资金驱动，可靠性较高。</p>
+<p>如果信号分裂（如2026年1月的金银背离）→ 定价权很可能在COT覆盖范围之外。此时必须跳出COT，去查世界黄金协会（WGC）的央行购金报告、全球黄金ETF持仓周度变化、以及美国10年期TIPS实际收益率。</p>
+<p><strong>第四步：对于重点关注资产，翻到数据表视图看近4周的变化Z-score趋势。</strong></p>
+<p>一个”多头建仓”放在四周序列里，才能判断它是起点还是终点。</p>
+<hr>
+<h1 id="补充数据来源"><a href="#补充数据来源" class="headerlink" title="补充数据来源"></a>补充数据来源</h1><p>COT数据本身只覆盖COMEX期货市场。要拼出完整图景，还需要配合：</p>
+<ul>
+<li><strong>世界黄金协会（WGC）季度央行购金报告</strong> — 全球央行黄金储备变动</li>
+<li><strong>全球黄金ETF持仓量周度变化</strong> — 机构投资者和散户的黄金配置情绪</li>
+<li><strong>美国10年期TIPS实际收益率</strong> — 黄金短期定价锚，最可靠的负相关指标</li>
+<li><strong>CFTC COT商业套保盘（Producer&#x2F;Merchant）数据</strong> — 矿商和生产商的套保动向，有时比投机盘更有信息量</li>
+</ul>
+<hr>
+<h2 id="风险提示"><a href="#风险提示" class="headerlink" title="风险提示"></a>风险提示</h2><p><strong>1. 数据的滞后性</strong></p>
+<p>COT报告存在3天的物理延迟（每周五发布截至当周周二的数据）。它绝对不适合用于日内交易或极短线博弈，真正的价值在于辅助判断中期（周&#x2F;月级别）的趋势与盈亏比。</p>
+<p><strong>2. 机构并非全知全能</strong></p>
+<p>对冲基金也会犯错，也会面临止损。不应盲目”抄作业”，而应将其视为市场结构分析的一部分。COT告诉你的是”专业资金在做什么”，不是”专业资金一定是对的”。</p>
+<p><strong>3. 多指标共振</strong></p>
+<p>单一的资金动作信号噪音较大。但当极端持仓Z-score + 量价背离 + 变化Z-score加速度衰竭同时出现时，信号的有效性将显著上升。</p>
+<p><strong>4. 数据覆盖的边界：COT看不到的东西可能更重要</strong></p>
+<p>这是一条大多数人会忽略的风险。</p>
+<p>COT只覆盖COMEX期货市场的投机仓位。当一轮行情的边际定价者不在COMEX时——例如2023-2026年黄金牛市中的央行购金、ETF资金流入、场外实物需求——COT信号的预测能力会系统性下降。</p>
+<p>2026年1月就是典型案例：金价涨至$5,595的历史高点，COMEX多头持仓Z-score全程未超过-0.4，拥挤度从未报警。不是COT”错了”，而是当时的定价权不在COT覆盖的玩家手里。</p>
+<blockquote>
+<p><strong>当你发现价格剧烈波动但COT信号静默时，恰恰是最需要警觉的时候</strong>——它意味着你必须去查看COT以外的数据来补全图景。</p>
+</blockquote>
+<hr>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>2026年1月，COT没有报警，但黄金还是崩了。</p>
+<p>这不是COT的失败。</p>
+<p>而是提醒我们：</p>
+<blockquote>
+<p>没有任何单一数据源能看到市场的全貌。</p>
+</blockquote>
+<p>COT看到的是期货交易员的手。</p>
+<p>但它看不到央行的手。看不到ETF投资者的手。看不到那个在恐慌中赎回基金的散户的手。</p>
+<p>不过，如果你知道它在看什么、看不到什么——</p>
+<p>它就是一张非常有价值的地图。</p>
+<p>地图不会告诉你明天是晴是雨。</p>
+<p>但至少，它不会让你在暴风雪来的时候，还以为自己站在平原上。</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+    </div>
+    <div>
+      
+        <a href="/2026/05/09/COT%E6%95%B0%E6%8D%AE%E6%8C%81%E4%BB%93%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%8E%E8%83%8C%E7%A6%BB%E6%A3%80%E6%B5%8B/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          COT数据持仓可视化与背离检测
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo="KipWen/blog-comments"
+  data-repo-id="R_kgDOPYda5A"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOPYda5M4Ctynf"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        else if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + title + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+</main>
+    <footer class="flex flex-col mt-18 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  <div class="flex flex-row items-center my-12">
+    
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Github" target="_blank" rel="noopener" href="https://github.com/KipWen">
+            <iconify-icon width="28" icon="mingcute:github-fill"></iconify-icon>
+        </a>
+    
+        
+        
+            
+            
+        
+        <a class="
+            hover:text-[var(--c-theme)]
+            hover:bg-[var(--c-20)]
+            rounded-lg
+            p-2
+            my-1
+            flex flex-row items-center
+            group" title="Steam" target="_blank" rel="noopener" href="https://steamcommunity.com/profiles/76561199368310509/">
+            <iconify-icon width="28" icon="ri:steam-fill"></iconify-icon>
+        </a>
+    
+
+  </div>
+  <!-- busuanzi -->
+  <div class="mb-6">
+    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex flex-col items-center mb-2">
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="ic:round-person" width="18"></iconify-icon>
+    <span class="mr-1">访客 Visitors: </span>
+    <span id="busuanzi_value_site_uv"></span>
+  </div>
+  <div class="flex flex-row items-center">
+    <iconify-icon width="16" icon="carbon:view-filled" width="18"></iconify-icon>
+    <span class="mx-1">浏览量 Page Views:</span>
+    <span id="busuanzi_value_site_pv"></span>
+  </div>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  </div>
+  <!-- copyright -->
+  <div class="flex flex-row items-center gap-2">
+    <a class="hover:underline"
+      target="_blank"
+      href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >
+      CC BY-NC-SA 4.0
+    </a>
+    <span>© 2022-2024</span>
+    <a class="hover:underline"
+    href="https://github.com/chen-yingfa" 
+    target="_blank" 
+    rel="noopener noreferrer">陈英发</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-1">
+    <span>Powered by</span>
+    <a class="hover:underline" 
+    href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/chen-yingfa/hexo-theme-fengye" 
+    class="hover:underline"
+    target="_blank"
+      rel="noopener noreferrer"
+      >
+      枫叶 Fengye
+    </a>
+  </div>
+
+</footer>
+
+    <div
+      class="back-to-top fixed right-6 z-1024 -bottom-20 rounded-lg font-bold py-1 px-2 text-[var(--c-80)] bg-[var(--c-20)] cursor-pointer text-center drop-shadow-md"
+    >
+      <span class="flex justify-center items-center text-sm">
+        <span id="scrollpercent"><span>0</span> %</span>
+        <iconify-icon
+          width="18"
+          icon="mingcute:arrow-to-up-fill"
+          id="go-top"
+        ></iconify-icon>
+      </span>
+    </div>
+    <script>
+  var CONFIG = {
+    root: '/',
+    // 从站点 _config.yml 的 search 插件配置中获取 path
+    path: 'search.xml',
+    // 从主题 _config.yml 中获取 localsearch 的所有配置
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}
+  };
+</script>
+
+ 
+<script src="/js/main.js"></script>
+   
+<script src="/js/search.js"></script>
+ 
+
+    <div
+      class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden"
+      id="maple"
+    ></div>
+  </body>
+</html>

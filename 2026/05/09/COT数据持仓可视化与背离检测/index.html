@@ -318,7 +318,7 @@ Short, intimate, and creates a nice dialogue with the future self.
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2026-05-09</time>
+              Edited: <time class="w-max">2026-06-02</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -328,7 +328,7 @@ Short, intimate, and creates a nice dialogue with the future self.
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>2.1k words, 7 min</span>
+              <span>2.2k words, 7 min</span>
             </span>
             <!-- Categories -->
             
@@ -443,14 +443,14 @@ Short, intimate, and creates a nice dialogue with the future self.
 <hr>
 <p>在去年对金融市场开始感兴趣（其实是被套牢了😭😭），被迫开始学习一些相关知识，上涨让人恐惧，只有套牢才会让人安心持有😋😋。当然这个工具仅仅一个参考思路，远远比不上手绘K线。下面是对视频思路的总结以及对工具关键指标数据的解释。原作者项目后面数据我无法正常访问，于是fork一下，修改了一点并重新部署。关于AI分析报告本地测试已通过，但部署后网络问题无法正常访问，所有暂未上线。</p>
 <p><span style="color: red; font-weight: bold; font-style: italic;"> 注：市场有巨大风险，投资需十分谨慎。此工具不对任何投资做出任何形式的承诺或担保，投资者应自行决策，自担投资风险。</span></p>
-<h2 id="为什么我们需要关注机构持仓？"><a href="#为什么我们需要关注机构持仓？" class="headerlink" title="为什么我们需要关注机构持仓？"></a>为什么我们需要关注机构持仓？</h2><p>​ 在交易市场中，我们经常听到”聪明钱（Smart Money）”这个词，它通常指代对冲基金、CTA（商品交易顾问）等专业机构手中的大体量资金。相比于散户，这些机构拥有更强的信息获取能力和投研模型，他们的布局往往具有明显的前瞻性。</p>
-<p>​ 了解这些资金动向的最佳公开渠道，是美国商品期货交易委员会（CFTC）每周五发布的<strong>COT（Commitment of Traders，交易者承诺）</strong> 报告。这份报告详细披露了各类市场参与者在期货市场上的持仓分布。</p>
+<h2 id="为什么我们需要关注机构持仓？"><a href="#为什么我们需要关注机构持仓？" class="headerlink" title="为什么我们需要关注机构持仓？"></a>为什么我们需要关注机构持仓？</h2><p> 在交易市场中，我们经常听到”聪明钱（Smart Money）”这个词，它通常指代对冲基金、CTA（商品交易顾问）等专业机构手中的大体量资金。相比于散户，这些机构拥有更强的信息获取能力和投研模型，他们的布局往往具有明显的前瞻性。</p>
+<p> 了解这些资金动向的最佳公开渠道，是美国商品期货交易委员会（CFTC）每周五发布的<strong>COT（Commitment of Traders，交易者承诺）</strong> 报告。这份报告详细披露了各类市场参与者在期货市场上的持仓分布。</p>
 <p>但如果你直接打开 CFTC 官网，面对的只会是极其枯燥的原始报表：</p>
 <blockquote>
 <p>原油：多头 285,347 手，空头 142,891 手，净多 142,456 手……</p>
 </blockquote>
-<p>​ <strong>脱离了历史参照系，绝对数值是毫无意义的。</strong> 我们需要将其与过去几年的历史水位进行对比，才能判断当前的仓位是否”极端”；我们需要将其与同期资产价格走势进行拟合，才能看清资金是在”顺势推升”还是”逆势派发”。</p>
-<p>​ 为了实现数据可视化，开发 <a target="_blank" rel="noopener" href="https://cft-report-one.vercel.app/">cft-report-one.vercel.app</a> 这个数据面板工具，将原始持仓数据，转化为可直接用于复盘的量化指标。</p>
+<p> <strong>脱离了历史参照系，绝对数值是毫无意义的。</strong> 我们需要将其与过去几年的历史水位进行对比，才能判断当前的仓位是否”极端”；我们需要将其与同期资产价格走势进行拟合，才能看清资金是在”顺势推升”还是”逆势派发”。</p>
+<p> 为了实现数据可视化，开发 <a target="_blank" rel="noopener" href="https://cft-report-one.vercel.app/">cft-report-one.vercel.app</a> 这个数据面板工具，将原始持仓数据，转化为可直接用于复盘的量化指标。</p>
 <hr>
 <h2 id="数据底层与处理逻辑"><a href="#数据底层与处理逻辑" class="headerlink" title="数据底层与处理逻辑"></a>数据底层与处理逻辑</h2><p>工具的数据来自官方公开接口，有三个方面来源：</p>
 <table>
@@ -494,13 +494,13 @@ Short, intimate, and creates a nice dialogue with the future self.
 <li>Z-score &gt; 2.0：触发 <strong>拥挤多头 &#x2F; 拥挤空头</strong> 预警。</li>
 <li>Z-score &gt; 2.75：触发 <strong>极端拥挤</strong> 红灯。</li>
 </ul>
-<p><strong>拥挤本身不能用于预测方向的立即反转，但它决定了趋势的脆弱性。</strong> 例如一个经典的案例是 2023 年秋季的黄金市场：当时黄金空头拥挤度触及极值（Z-score &lt; -2）。10 月初地缘冲突爆发，拥挤的空头头寸瞬间发生严重踩踏，空头平仓盘化作了巨大的买盘燃料，推动金价在两周内飙升近 11%。</p>
+<p>**拥挤本身不能用于预测方向的立即反转，但它决定了趋势的脆弱性。**当某一资产（如原油或标普500）的空头拥挤度触及极值时，一旦突发宏观利好或地缘事件，拥挤的空头头寸极易发生严重踩踏。被迫止损的平仓盘会化作巨大的买盘燃料，形成经典的“空头挤压（Short Squeeze）”，推动价格暴力拉升。</p>
 <h3 id="3-量价背离-Divergence-：捕捉潜在拐点"><a href="#3-量价背离-Divergence-：捕捉潜在拐点" class="headerlink" title="3. 量价背离 (Divergence)：捕捉潜在拐点"></a>3. 量价背离 (Divergence)：捕捉潜在拐点</h3><p>这是胜率最高、也最值得警惕的信号。当机构的动作方向与资产价格走势出现背离时触发：</p>
 <ul>
 <li>价格下跌，但资金在买入（多头建仓 &#x2F; 空头回补）：可能是主力在左侧吸筹。</li>
 <li>价格上涨，但资金在卖出（多头平仓 &#x2F; 空头建仓）：暗示聪明钱正在<strong>高位派发筹码（平仓）甚至主动摸顶做空（建仓）</strong>，而市场情绪仍在盲目推高价格。</li>
 </ul>
-<p>在 2025 年下半年黄金触及阶段性高点时，盘面上就曾频繁出现”价格新高 + 多头平仓”的背离组合——这是一个极度危险的见顶信号。</p>
+<p>当盘面上频繁出现“价格创出新高 + 主力多头持续平仓”的背离组合时，往往是一个极度危险的见顶预警，提示我们应当重新审视持仓的风险收益比。</p>
 <hr>
 <h2 id="周度复盘工作流"><a href="#周度复盘工作流" class="headerlink" title="周度复盘工作流"></a>周度复盘工作流</h2><p><img src="https://raw.githubusercontent.com/KipWen/blog-img/main/blog/202605091024967.png" alt="Dashboard"></p>
 <p>数据通常在每周五更新（包含截至当周二的数据），有3天延迟。</p>
@@ -525,6 +525,8 @@ Short, intimate, and creates a nice dialogue with the future self.
 </ul>
 <hr>
 <p><em>通过数据建立规则，通过规则对抗人性。希望这个工具能帮你构建属于自己的宏观观测视角。</em></p>
+<p>更新（2026）：</p>
+<p>工具给出的只是数据切片，真实的宏观交易往往更加复杂，如果你想了解当极端行情爆发时，COT指标会如何表现，以及<strong>COT数据有哪些无法覆盖的“致命盲区”</strong>，可以阅读我的另一篇深度实战复盘：<a href="https://kipwen.github.io/2026/05/28/%E4%B8%BA%E4%BB%80%E4%B9%882026%E5%B9%B4%E9%BB%84%E9%87%91%E6%9A%B4%E8%B7%8C%E6%97%B6%EF%BC%8CCOT%E5%87%A0%E4%B9%8E%E6%B2%A1%E6%9C%89%E6%8A%A5%E8%AD%A6%EF%BC%9F/">《为什么2026年黄金暴跌时，COT几乎没有报警？》</a></p>
 
   </article>
 
@@ -534,6 +536,18 @@ Short, intimate, and creates a nice dialogue with the future self.
     gap-2 text-[var(--c-50)]
   ">
     <div>
+      
+        <a href="/2026/05/28/%E4%B8%BA%E4%BB%80%E4%B9%882026%E5%B9%B4%E9%BB%84%E9%87%91%E6%9A%B4%E8%B7%8C%E6%97%B6%EF%BC%8CCOT%E5%87%A0%E4%B9%8E%E6%B2%A1%E6%9C%89%E6%8A%A5%E8%AD%A6%EF%BC%9F/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          为什么2026年黄金暴跌时，COT几乎没有报警？
+        </a>
       
     </div>
     <div>
